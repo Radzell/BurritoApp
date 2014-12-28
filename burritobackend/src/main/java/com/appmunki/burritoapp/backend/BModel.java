@@ -1,6 +1,8 @@
 package com.appmunki.burritoapp.backend;
 
 
+import com.google.api.server.spi.config.AnnotationBoolean;
+import com.google.api.server.spi.config.ApiResourceProperty;
 import com.google.api.server.spi.response.BadRequestException;
 import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonAutoDetect;
 import com.google.appengine.repackaged.org.codehaus.jackson.annotate.JsonIgnoreProperties;
@@ -18,6 +20,7 @@ public abstract class BModel<T extends BModel> {
     @Id
     @Index
     @JsonProperty
+    @ApiResourceProperty(ignored = AnnotationBoolean.TRUE)
     public String uid;
 
     public static <T extends BModel> T  createModel(Class<T> clazz) {
@@ -58,6 +61,8 @@ public abstract class BModel<T extends BModel> {
         String json = toJson();
         return new Resource().setType(getClass().getSimpleName()).setData(this.toJson());
     }
+
+    @ApiResourceProperty(name = "uid")
     public String getUID() {
         return uid;
     }

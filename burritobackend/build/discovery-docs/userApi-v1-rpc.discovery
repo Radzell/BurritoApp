@@ -1,6 +1,6 @@
 {
  "kind": "discovery#rpcDescription",
- "etag": "\"c05bU6zpvXPOpQakG5gG3IOJh8Y/5tIB4CstFm4QmeXkUBJjNAtaVig\"",
+ "etag": "\"c05bU6zpvXPOpQakG5gG3IOJh8Y/V9v0YfbVBlze4ycvz-JePuKS5J4\"",
  "discoveryVersion": "v1",
  "id": "userApi:v1",
  "name": "userApi",
@@ -71,6 +71,21 @@
   }
  },
  "schemas": {
+  "CollectionResponse_User": {
+   "id": "CollectionResponse_User",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "User"
+     }
+    },
+    "nextPageToken": {
+     "type": "string"
+    }
+   }
+  },
   "Resource": {
    "id": "Resource",
    "type": "object",
@@ -82,9 +97,82 @@
      "type": "string"
     }
    }
+  },
+  "User": {
+   "id": "User",
+   "type": "object",
+   "properties": {
+    "number": {
+     "type": "string"
+    },
+    "password": {
+     "type": "string"
+    },
+    "token": {
+     "type": "string"
+    },
+    "uid": {
+     "type": "string"
+    }
+   }
   }
  },
  "methods": {
+  "userApi.get": {
+   "id": "userApi.get",
+   "allowGet": true,
+   "parameters": {
+    "uid": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "uid"
+   ],
+   "returns": {
+    "$ref": "User"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "userApi.insert": {
+   "id": "userApi.insert",
+   "parameters": {
+    "resource": {
+     "$ref": "User"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "User"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "userApi.list": {
+   "id": "userApi.list",
+   "allowGet": true,
+   "parameters": {
+    "cursor": {
+     "type": "string"
+    },
+    "limit": {
+     "type": "integer",
+     "format": "int32"
+    }
+   },
+   "returns": {
+    "$ref": "CollectionResponse_User"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "userApi.login": {
    "id": "userApi.login",
    "parameters": {
@@ -117,6 +205,48 @@
     "https://www.googleapis.com/auth/userinfo.email"
    ]
   },
+  "userApi.patch": {
+   "id": "userApi.patch",
+   "supportsPatch": true,
+   "parameters": {
+    "number": {
+     "type": "string"
+    },
+    "password": {
+     "type": "string"
+    },
+    "token": {
+     "type": "string"
+    },
+    "uid": {
+     "type": "string"
+    }
+   },
+   "parameterOrder": [
+    "uid"
+   ],
+   "returns": {
+    "$ref": "User"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "userApi.remove": {
+   "id": "userApi.remove",
+   "parameters": {
+    "uid": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "uid"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
   "userApi.signup": {
    "id": "userApi.signup",
    "parameters": {
@@ -129,6 +259,28 @@
    ],
    "returns": {
     "$ref": "Resource"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "userApi.update": {
+   "id": "userApi.update",
+   "parameters": {
+    "resource": {
+     "$ref": "User"
+    },
+    "uid": {
+     "type": "string",
+     "required": true
+    }
+   },
+   "parameterOrder": [
+    "resource",
+    "uid"
+   ],
+   "returns": {
+    "$ref": "User"
    },
    "scopes": [
     "https://www.googleapis.com/auth/userinfo.email"

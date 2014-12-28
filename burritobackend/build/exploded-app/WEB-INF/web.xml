@@ -13,8 +13,9 @@
         <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
         <init-param>
             <param-name>services</param-name>
-            <param-value>
-                com.appmunki.burritoapp.backend.UserEndpoint</param-value>
+            <param-value>com.appmunki.burritoapp.backend.UserEndpoint,
+                com.appmunki.burritoapp.backend.DishEndpoint,
+                com.appmunki.burritoapp.backend.OrderEndpoint</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

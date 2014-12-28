@@ -1,5 +1,7 @@
 package com.appmunki.burritoapp.model;
 
+import android.provider.BaseColumns;
+
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Table;
 import com.appmunki.burritoapp.backend.userApi.model.Resource;
@@ -12,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by radzell on 12/23/14.
  */
-@Table(name="")
+@Table(name="",id = BaseColumns._ID)
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.DEFAULT,
         getterVisibility = JsonAutoDetect.Visibility.NONE, isGetterVisibility = JsonAutoDetect.Visibility.NONE)

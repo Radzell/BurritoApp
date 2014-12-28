@@ -20,4 +20,8 @@ public class OfyService {
         return ObjectifyService.factory();
 
     }
+
+    public static void register(Class<?> clazz) {
+        factory().register(clazz);
+    }
 }
